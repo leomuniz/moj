@@ -1,0 +1,13 @@
+Options +FollowSymLinks
+Options All -Indexes
+RewriteEngine on
+
+# url with slash at the end
+# RewriteCond %{SCRIPT_FILENAME} !-d  
+# RewriteCond %{SCRIPT_FILENAME} !-f
+# RewriteRule ^(.*)[/?]$ core/processRequest.php?url=$1 [QSA,L]
+
+# url without slash at the end
+# RewriteCond %{SCRIPT_FILENAME} !-d  # doesn't apply the rule on directories
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ^(.*)$ application/processRequest.php?url=$1 [QSA,L]
