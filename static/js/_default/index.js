@@ -1,0 +1,1 @@
+// javascript file specific to be executed on homepage (Controller: _default; Method: index);

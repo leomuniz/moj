@@ -1,0 +1,19 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+MOJ PHP - MVC FRAMEWORK
+
+# TEAM
+
+    Léo Muniz -- Creator/Developer -- @leomuniz - www.leomuniz.com.br
+
+# THANKS
+
+	Claudinha Périssé - My wife
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    jQuery, Modernizr
+    PHP 5.5
+    
