@@ -9,6 +9,8 @@ class User extends LAM\moj\Controller {
 	}
 	
 	public function add() {
+		$this->variables["variable"] = "Testing variable declaration"; // this variable will be available to use in the view as $teste
+
 		$this->template = "loggedUser";
 		$this->renderView("addUser");
 	}

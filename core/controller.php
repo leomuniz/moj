@@ -5,11 +5,14 @@ namespace LAM\Moj;
 class Controller {
 	
 	public $template = null;
+	public $variables = [];
 	
 	function __construct() { } 
 	
 	protected function renderView($view = null) { // renders the view
 		
+		foreach ($this->variables as $key => $value) { $$key = $value; } // creates variables to use in the view
+	
 		// discover which method of which controller called the function
 		$whoCalled = debug_backtrace(); 
 		
