@@ -19,7 +19,7 @@
 			
 		?>  
 
-        <script src="<?=LAM\Moj\Config::$siteDirectory?>/static/js/vendor/modernizr-2.6.2.min.js"></script>
+        <!--script src="<?=LAM\Moj\Config::$siteDirectory?>/static/js/vendor/modernizr-2.6.2.min.js"></script-->
     </head>
     <body>
         <!--[if lt IE 7]>
