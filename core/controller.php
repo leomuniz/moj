@@ -63,8 +63,10 @@ class Controller {
 	protected function loadModel($modelName = null) {
 		if ($modelName == null) {
 			$whoCalled = debug_backtrace(); 
-			$modelName = $whoCalled[1]["class"]."model";
+			$modelName = $whoCalled[1]["class"];
 		}
+		
+		$modelName.="model";		
 	
 		if (file_exists("models/".strtolower($modelName).'.php')) {
 
