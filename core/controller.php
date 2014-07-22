@@ -24,7 +24,8 @@ class Controller {
 		$controller = strtolower($controller[count($controller)-1]);
 		
 		$method = $view == null?$whoCalled[1]["function"]:$view;
-
+		$method = str_replace("_","-",$method); // replaces underline on url by hifen
+		
 		if (file_exists("views/".$controller."/".$method.".php")) {
 
 			$content = "views/".$controller."/".$method.".php";
@@ -42,41 +43,26 @@ class Controller {
 	
 	
 	protected function dbConnect() {
-		try {
-
-			$this->db = new PDO(Config::$dbType.":host=".Config::$dbHost.";dbname=".Config::$dbName.";charset=".Config::$dbCharset, Config::$dbUser , Config::$dbPassword);
-			$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-
-		} catch (PDOException $e) {
-
-		    if (Config::$debug) 
-		    	echo 'Connection failed: ' . $e->getMessage();
-		    else 
-		    	die("Site offline for maintenance");
-
-		}	
-
+		$connection = new db();
+		$this->db = $connection->db;
 	}
 	
 	
-	protected function loadModel($modelName = null) {
+	protected function loadModel($modelName = null, $param = null) {
 		if ($modelName == null) {
 			$whoCalled = debug_backtrace(); 
 			$modelName = $whoCalled[1]["class"];
 		}
 		
-		$modelName.="model";		
-	
-		if (file_exists("models/".strtolower($modelName).'.php')) {
+		$modelName.="model";
+	        
+	    if (class_exists($modelName)) {
 
-	        require 'models/' . strtolower($modelName) . '.php';
-
-			if ($this->db)
-				$model = new $modelName($this->db);
-			else
+			if ($param)
+				$model = new $modelName($param);
+			else 
 				$model = new $modelName();
-	
+				
 	        return $model;
 	        
 	    } else {

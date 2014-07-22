@@ -5,6 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title></title>
         <meta name="description" content="">
+	    <meta name="author" content="Léo Muniz">
+	    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">        
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="<?=LAM\Moj\Config::$siteDirectory?>/static/css/normalize.min.css">

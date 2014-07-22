@@ -12,7 +12,7 @@ class User extends LAM\moj\Controller {
 		// You can call SQL queries directly from the controller, just like this (using $this->db object)
 		// But it is not recommended because, on large projects, 
 		// you will probably repeat yourself using the same queries on different places
-		$query = "select * from users limit 0,10";
+		$query = "select * from usuarios limit 0,10";
         $query = $this->db->prepare($query);
         $query->execute();
 		$this->variables["usersWithoutModel"] = $query->fetchAll();

@@ -9,6 +9,10 @@ class Model {
 
 	public $db;
 
-	public function __construct($db = null) { $this->db = $db; }
+	public function __construct() { }
 	
+	public function dbConnect() {
+		$connection = new db();
+		$this->db = $connection->db;
+	}
 }

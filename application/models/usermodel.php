@@ -2,8 +2,10 @@
 
 class UserModel extends LAM\moj\Model {
 
-	public function __construct($db) {
-		parent::__construct($db); // necessary call to execute the parent's constructor function (class Model)
+	public function __construct() {
+
+		// Commom model's function to establish a database connection
+		$this->dbConnect();
 
 		if ($this->db) { // $this->db = PDO Object
 			echo "Database connection established";
@@ -13,7 +15,7 @@ class UserModel extends LAM\moj\Model {
 	}
 	
 	public function getAllUsers() {
-		$query = "select * from users limit 0,10";
+		$query = "select * from usuarios limit 0,10";
         $query = $this->db->prepare($query);
         $query->execute();
 		return $query->fetchAll();	

@@ -14,19 +14,21 @@ class Application {
 		
 			$controller = $this->request[0];
 
-			if (file_exists("controllers/".$controller.".php")) { // verifies if this controller exists
-				require_once "controllers/".$controller.".php";
+			if (class_exists($controller)) {
 				$controller = new $controller(); // creates an instance of this controller 
 				
 				$this->request[1] = !$this->request[1]?"index":$this->request[1]; // index is the default method
 				$method = $this->request[1];
+				$method = str_replace("-","_",$method); // replaces hifen on url by underline
+				$method = ( (!method_exists($controller, $method)) && (!Config::$indexMethod) ) ? "index" : $method;
 				
 	            if (method_exists($controller, $method)) {
-					for ($i=0; ($i < count($this->request)-2) && ($i < $this->max_params); $i++) $params[$i] = $this->request[2+$i]; // concatenates params inside an Array
+	            	$firstParam = ($method == "index") && ($this->request[1] != "index") ? 1 : 2;
+					for ($i = $firstParam; ($i < count($this->request)) && (($i - $firstParam) < $this->max_params); $i++) $params[$i - $firstParam] = $this->request[$i]; // concatenates params inside an Array
 	            	$controller->{$method}($params); // calls the method, passing params inside an array
 	            } else {
        				if (Config::$debug) 
-       					echo "Error: method <strong>".$this->request[1]."</strong> not found inside <strong>".$this->request[0]."</strong> controller.";	
+       					echo "Error: method <strong>".$method."</strong> not found inside <strong>".$this->request[0]."</strong> controller.";	
        				else
        					$this->showDefaultPage("page404");
 	            }
@@ -59,7 +61,6 @@ class Application {
 	
 	
 	public function showDefaultPage($method) {
-		require_once "controllers/_default.php";
 		$defaultController = new _default();
 		$defaultController->{$method}();
 	}
