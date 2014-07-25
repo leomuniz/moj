@@ -25,6 +25,13 @@ class autoloader {
 		if (file_exists("models/".$classname.".php")) require_once("models/".$classname.".php");
 	}	
 	
+	
+	static public function modules ($classname) {
+		$classname = autoloader::ignoreNamespace($classname);
+		if (file_exists("modules/".$classname.".php")) require_once("modules/".$classname.".php");
+	}	
+	
+	
 	private function ignoreNamespace ($classname) {
 		$classname = explode("\\",$classname);
 		return strtolower(end($classname));
@@ -35,6 +42,7 @@ class autoloader {
 // Registering autoload functions
 spl_autoload_register("LAM\Moj\autoloader::coreClasses");
 spl_autoload_register("LAM\Moj\autoloader::controllers");
-spl_autoload_register("LAM\Moj\autoloader::models");	
+spl_autoload_register("LAM\Moj\autoloader::models");
+spl_autoload_register("LAM\Moj\autoloader::modules");
 
 

@@ -29,11 +29,11 @@ class Controller {
 		if (file_exists("views/".$controller."/".$method.".php")) {
 
 			$content = "views/".$controller."/".$method.".php";
-			if ($this->template == null) {	$this->template = Config::$defaultTemplate; }
+			if ($this->template == null) {	$this->template = DEFAULT_TEMPLATE; }
 			include "templates/".$this->template.".php";			
 
 		} else {
-			if (Config::$debug) 
+			if (DEBUG) 
 				echo "View <strong>".$method."</strong> inside <strong>".$controller."</strong> controller not found.<br>File not found: views/".$controller."/".$method.".php<br>";
 			else 
 				Application::showDefaultPage("page404");
@@ -53,8 +53,6 @@ class Controller {
 			$whoCalled = debug_backtrace(); 
 			$modelName = $whoCalled[1]["class"];
 		}
-		
-		$modelName.="model";
 	        
 	    if (class_exists($modelName)) {
 
@@ -66,7 +64,7 @@ class Controller {
 	        return $model;
 	        
 	    } else {
-			if (Config::$debug) 
+			if (DEBUG) 
 				echo "Model <strong>".$modelName."</strong> not found.<br>File not found: models/".$modelName.".php<br>";
 			else 
 				Application::showDefaultPage("page404");	    

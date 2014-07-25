@@ -9,19 +9,19 @@
 	    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">        
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="<?=LAM\Moj\Config::$siteDirectory?>/static/css/normalize.min.css">
-        <link rel="stylesheet" href="<?=LAM\Moj\Config::$siteDirectory?>/static/css/main.css">
+        <link rel="stylesheet" href="<?=SITE_DIRECTORY?>/static/css/normalize.min.css">
+        <link rel="stylesheet" href="<?=SITE_DIRECTORY?>/static/css/main.css">
         <?
 			// Inserts css file with Method name inside Controller folder (inside /css/ folder)
 			// For homepage => Controller: _default; Method: index; CSS File: /static/css/_default/index.js
 			// For other css => CSS File: /static/css/<controller>/<method>.js
 
-			$cssFile = LAM\Moj\Config::$siteDirectory."/static/css/".$controller."/".$method.".css";
+			$cssFile = SITE_DIRECTORY."/static/css/".$controller."/".$method.".css";
 			if (is_file($_SERVER["SITE_HTMLROOT"].$cssFile)) echo '<link rel="stylesheet" href="'.$cssFile.'">';
 			
 		?>  
 
-        <!--script src="<?=LAM\Moj\Config::$siteDirectory?>/static/js/vendor/modernizr-2.6.2.min.js"></script-->
+        <!--script src="<?=SITE_DIRECTORY?>/static/js/vendor/modernizr-2.6.2.min.js"></script-->
     </head>
     <body>
         <!--[if lt IE 7]>

@@ -20,21 +20,21 @@ class Application {
 				$this->request[1] = !$this->request[1]?"index":$this->request[1]; // index is the default method
 				$method = $this->request[1];
 				$method = str_replace("-","_",$method); // replaces hifen on url by underline
-				$method = ( (!method_exists($controller, $method)) && (!Config::$indexMethod) ) ? "index" : $method;
+				$method = ( (!method_exists($controller, $method)) && (!INDEX_METHOD) ) ? "index" : $method;
 				
 	            if (method_exists($controller, $method)) {
 	            	$firstParam = ($method == "index") && ($this->request[1] != "index") ? 1 : 2;
 					for ($i = $firstParam; ($i < count($this->request)) && (($i - $firstParam) < $this->max_params); $i++) $params[$i - $firstParam] = $this->request[$i]; // concatenates params inside an Array
 	            	$controller->{$method}($params); // calls the method, passing params inside an array
 	            } else {
-       				if (Config::$debug) 
+       				if (DEBUG) 
        					echo "Error: method <strong>".$method."</strong> not found inside <strong>".$this->request[0]."</strong> controller.";	
        				else
        					$this->showDefaultPage("page404");
 	            }
 				
 			} else {
-				if (Config::$debug) 
+				if (DEBUG) 
 					echo "Error: controller <strong>".$this->request[0]."</strong> not found";
    				else
    					$this->showDefaultPage("page404");
