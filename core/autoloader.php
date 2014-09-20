@@ -32,7 +32,7 @@ class autoloader {
 	}	
 	
 	
-	private function ignoreNamespace ($classname) {
+	private static function ignoreNamespace ($classname) {
 		$classname = explode("\\",$classname);
 		return strtolower(end($classname));
 	}

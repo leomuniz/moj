@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html lang="pt-br" class="no-js">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title></title>
         <meta name="description" content="">
 	    <meta name="author" content="Léo Muniz">
-	    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">        
+	    
+		<link rel="shortcut icon" href="<?=SITE_DIRECTORY?>/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="<?=SITE_DIRECTORY?>/favicon.ico" type="image/x-icon">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="<?=SITE_DIRECTORY?>/static/css/normalize.min.css">

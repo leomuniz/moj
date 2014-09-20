@@ -14,6 +14,6 @@
 		?> 
 
 
-<? include "elements/google-analytics.php" ?>
+		<? include "elements/google-analytics.php" ?>
     </body>
 </html>

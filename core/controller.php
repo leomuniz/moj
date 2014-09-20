@@ -17,18 +17,15 @@ class Controller {
 		foreach ($this->variables as $key => $value) { $$key = $value; } // creates variables to use in the view
 	
 		// discovers which method of which controller called the function
-		$whoCalled = debug_backtrace(); 
+		$controller = get_called_class();
+		$controller = strtolower(array_pop(explode("\\",$controller))); // explode to break possible namespace; array_pop to get the last element (the controller name)
 		
-		$controller = $whoCalled[1]["class"];
-		$controller = explode("\\",$controller);
-		$controller = strtolower($controller[count($controller)-1]);
-		
-		$method = $view == null?$whoCalled[1]["function"]:$view;
+		$method = $view != null?$view:debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2)[1]['function'];
 		$method = str_replace("_","-",$method); // replaces underline on url by hifen
 		
 		if (file_exists("views/".$controller."/".$method.".php")) {
 
-			$content = "views/".$controller."/".$method.".php";
+			$content = "views/".$controller."/".$method.".php"; // defines view content
 			if ($this->template == null) {	$this->template = DEFAULT_TEMPLATE; }
 			include "templates/".$this->template.".php";			
 
