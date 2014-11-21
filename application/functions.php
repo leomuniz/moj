@@ -79,3 +79,19 @@ function moj_pagination($foundRows,$pagina = 0,$itensPorPagina = 20, $classe="pa
 	
 	return $html;
 }
+
+
+// functions to translate strings 
+// echo found translate
+function __($stringIndex, $substitutions = "") {
+	global $translation;
+	
+	echo $translation[$stringIndex];
+}
+
+// return found translate
+function _t($stringIndex, $substitutions = "") {
+	global $translation;
+	
+	return $translation[$stringIndex];
+}

@@ -1,0 +1,1 @@
+// commom javascript file to all methods of _default controller

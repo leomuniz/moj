@@ -2,8 +2,10 @@
 
 class User extends LAM\moj\Controller {
 	
+	public $disableTranslation = true; 	// disables translation process to this controller
 	
-	public function index() {
+	public function index($params) {
+		print_r($params);
 		
 		// Commom controller's function to establish a database connection
 		$this->dbConnect(); 

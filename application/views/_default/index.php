@@ -1,1 +1,1 @@
-<br> conteúdo home <br>
+<p> <?=_t("home_content");?> </p>

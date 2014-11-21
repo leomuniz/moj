@@ -14,13 +14,27 @@
         <link rel="stylesheet" href="<?=SITE_DIRECTORY?>/static/css/normalize.min.css">
         <link rel="stylesheet" href="<?=SITE_DIRECTORY?>/static/css/main.css">
         <?
+			// Inserts commom css file to all methods of a controller (inside /css/ folder)
+			// For homepage => Controller: _default; CSS File: /static/css/_default/commom.js
+			// For other css => CSS File: /static/css/<controller>/commom.js
+
+			$cssFile = SITE_DIRECTORY."/static/css/".$controller."/commom.css";
+			if (is_file($_SERVER["DOCUMENT_ROOT"].$cssFile)) echo '<link rel="stylesheet" href="'.$cssFile.'">';
+
+
 			// Inserts css file with Method name inside Controller folder (inside /css/ folder)
 			// For homepage => Controller: _default; Method: index; CSS File: /static/css/_default/index.js
 			// For other css => CSS File: /static/css/<controller>/<method>.js
 
 			$cssFile = SITE_DIRECTORY."/static/css/".$controller."/".$method.".css";
-			if (is_file($_SERVER["SITE_HTMLROOT"].$cssFile)) echo '<link rel="stylesheet" href="'.$cssFile.'">';
+			if (is_file($_SERVER["DOCUMENT_ROOT"].$cssFile)) echo '<link rel="stylesheet" href="'.$cssFile.'">';
 			
+			
+			// Inserts specific css files defined by $this->variables["cssFiles"] array
+			for ($i = 0; $i < count($cssFiles); $i++) {  
+				$cssFile = SITE_DIRECTORY."/static/css/".$cssFiles[0];
+				if (is_file($_SERVER["DOCUMENT_ROOT"].$cssFile)) echo '<link rel="stylesheet" href="'.$cssFile.'">';
+			} 			
 		?>  
 
         <!--script src="<?=SITE_DIRECTORY?>/static/js/vendor/modernizr-2.6.2.min.js"></script-->

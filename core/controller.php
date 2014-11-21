@@ -9,8 +9,12 @@ class Controller {
 	public $template = null;
 	public $variables = [];
 	public $db = null;
+	public $disableTranslation = false;
 	
-	function __construct() { } 
+	function __construct() { 
+		$this->variables["jsFiles"] = array();
+		$this->variables["cssFiles"] = array();
+	} 
 	
 	protected function renderView($view = null) { // renders the view
 		
@@ -18,7 +22,9 @@ class Controller {
 	
 		// discovers which method of which controller called the function
 		$controller = get_called_class();
-		$controller = strtolower(array_pop(explode("\\",$controller))); // explode to break possible namespace; array_pop to get the last element (the controller name)
+		$controller = explode("\\",$controller); // explode to break possible namespace;
+		$controller = array_pop($controller); // array_pop to get the last element (the controller name)
+		$controller = strtolower($controller); 
 		
 		$method = $view != null?$view:debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2)[1]['function'];
 		$method = str_replace("_","-",$method); // replaces underline on url by hifen
