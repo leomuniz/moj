@@ -14,7 +14,7 @@ define("SITE_DIRECTORY","/moj", true);
 define("DEBUG", true, true);
 define("DEFAULT_TEMPLATE","_default", true);
 define("TRANSLATION",true,true); // Turn on multi-language site
-define("LANGUAGES","br",true); // addicional site languages
+define("LANGUAGES","br",true); // additional site languages
 define("CRIPTO_KEY","choose-a-key", true);
 
 // Constants to connect Database
