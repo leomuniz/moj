@@ -20,7 +20,7 @@
 			
 			// Inserts specific javascript files defined by $this->variables["jsFiles"] array
 			for ($i = 0; $i < count($jsFiles); $i++) {  
-				$javascriptFile = SITE_DIRECTORY."/static/js/".$jsFiles[0];
+				$javascriptFile = SITE_DIRECTORY."/static/js/".$jsFiles[$i];
 				if (is_file($_SERVER["DOCUMENT_ROOT"].$javascriptFile)) echo '<script src="'.$javascriptFile.'"></script>';
 			} 
 		?>

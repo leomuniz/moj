@@ -15,7 +15,7 @@ class Application {
 		
 		if ($this->request[0]) { // loads controller
 		
-			$controller = $this->request[0];
+			$controller = str_replace("-","_",$this->request[0]);
 
 			if (!class_exists($controller) && (AUTO_DEFAULT_CONTROLLER)) { $controller = "LAM\Moj\_default"; } 
 

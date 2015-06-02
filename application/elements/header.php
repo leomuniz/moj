@@ -32,7 +32,7 @@
 			
 			// Inserts specific css files defined by $this->variables["cssFiles"] array
 			for ($i = 0; $i < count($cssFiles); $i++) {  
-				$cssFile = SITE_DIRECTORY."/static/css/".$cssFiles[0];
+				$cssFile = SITE_DIRECTORY."/static/css/".$cssFiles[$i];
 				if (is_file($_SERVER["DOCUMENT_ROOT"].$cssFile)) echo '<link rel="stylesheet" href="'.$cssFile.'">';
 			} 			
 		?>  

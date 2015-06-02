@@ -16,18 +16,18 @@ class Controller {
 		$this->variables["cssFiles"] = array();
 	} 
 	
-	protected function renderView($view = null) { // renders the view
+	protected function renderView($view = null, $controller = null) { // renders the view
 		
 		foreach ($this->variables as $key => $value) { $$key = $value; } // creates variables to use in the view
 	
 		// discovers which method of which controller called the function
-		$controller = get_called_class();
+		$controller = $controller != null?$controller:get_called_class();
 		$controller = explode("\\",$controller); // explode to break possible namespace;
 		$controller = array_pop($controller); // array_pop to get the last element (the controller name)
 		$controller = strtolower($controller); 
 		
 		$method = $view != null?$view:debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2)[1]['function'];
-		$method = str_replace("_","-",$method); // replaces underline on url by hifen
+		$method = str_replace("-","_",$method); // replaces hifen on url by underline
 		
 		if (file_exists("views/".$controller."/".$method.".php")) {
 
